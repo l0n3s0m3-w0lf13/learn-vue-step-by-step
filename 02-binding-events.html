@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 
 <head>
     <meta charset="UTF-8">
@@ -7,29 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            display: grid;
-            place-items: center;
-        }
-
-        .text-red {
-            color: red;
-        }
-
-        .text-green {
-            color: green;
-        }
-
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="h-full grid place-items-center">
     <div id="app">
         <!--
             v-bind:class
@@ -38,21 +19,25 @@
             v-on:click
             @click
         -->
-        <button :class="active ? 'text-green' : 'text-red'" @click="toggle">Click me!</button>
+        <button
+        	:class="active ? 'text-violet-700' : 'text-red-700'"
+        	@click="toggle"
+        	class="rounded-md border border-black hover:bg-black p-3"
+        >
+            Click me!
+        </button>
     </div>
 
     <script>
         Vue.createApp({
             data() {
                 return {
-                    // buttonClasses: 'text-green',
                     active: true,
                 };
             },
 
             methods: {
                 toggle() {
-                    // this.buttonClasses = 'text-red';
                     this.active = !this.active;
                 }
             }

@@ -20,7 +20,8 @@
 
             <ul>
                 <!-- Añadir una key a los elementos iterables con :key -->
-                <li v-for="assignment in inProgressAssignments"
+                <li
+                    v-for="assignment in inProgressAssignments"
                     :key="assignment.id"
                 >
 
@@ -37,8 +38,9 @@
             <h2 class="font-bold mb-2">Completed</h2>
 
             <ul>
-                <li v-for="assignment in completedAssignments"
-                    :key="assignment.id"
+                <li
+                	:key="assignment.id"
+                	v-for="assignment in completedAssignments"
                 >
 
                     <label>
