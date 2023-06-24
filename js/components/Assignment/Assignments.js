@@ -1,12 +1,19 @@
 import AssignmentList from "./AssignmentList.js";
+import AssignmentCreate from "./AssignmentCreate.js";
 
 export default {
-    components: { AssignmentList },
+    components: { AssignmentList, AssignmentCreate },
 
     template: `
         <section class="space-y-6">
             <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
             <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+
+            <!-- Modo 1: Comunicacion mediante props -->
+            <!-- <assignment-create :assignments="assignments"></assignment-create> -->
+
+            <!-- Modo 2: Recibir evento del componente hijo @nombre-evento="nombre-método" -->
+            <assignment-create @add="add"></assignment-create>
         </section>
     `,
 
@@ -30,9 +37,24 @@ export default {
 
         filters() {
             return {
-                inProgress: this.assignments.filter((assignment) => !assignment.complete),
-                completed: this.assignments.filter((assignment) => assignment.complete),
+                inProgress: this.assignments.filter(
+                    (assignment) => !assignment.complete
+                ),
+                completed: this.assignments.filter(
+                    (assignment) => assignment.complete
+                ),
             };
-        }
+        },
+    },
+
+    methods: {
+        // Evento del componente hijo
+        add(name) {
+            this.assignments.push({
+                name: name,
+                completed: false,
+                id: this.assignments.length + 1,
+            });
+        },
     },
 };
