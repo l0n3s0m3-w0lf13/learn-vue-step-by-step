@@ -12,10 +12,17 @@ export default {
             </h2>
 
             <!-- Variable $event contiene el valor recibido del evento emitido -->
-            <assignment-tags
+            <!-- <assignment-tags
                 :initial-tags="assignments.map(a => a.tag)"
                 :current-tag="currentTag"
                 @change="currentTag = $event"
+            /> -->
+
+            <!-- v-model alternativa -->
+            <!-- v-model:currentTag="currentTag" para no usar modelValue como prop en el componente hijo, sino currentTag -->
+            <assignment-tags
+                v-model="currentTag"
+                :initial-tags="assignments.map(a => a.tag)"
             />
 
             <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
@@ -45,7 +52,7 @@ export default {
                 return this.assignments;
             }
 
-            return this.assignments.filter(a => a.tag === this.currentTag);
+            return this.assignments.filter((a) => a.tag === this.currentTag);
         },
     },
 };
