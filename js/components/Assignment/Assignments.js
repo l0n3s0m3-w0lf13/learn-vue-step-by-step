@@ -5,21 +5,32 @@ export default {
     components: { AssignmentList, AssignmentCreate },
 
     template: `
-        <section class="space-y-6">
-            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
-            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+        <section class="flex gap-8">
+            <assignment-list :assignments="filters.inProgress" title="In Progress">
+                <assignment-create @add="add"></assignment-create>
+            </assignment-list>
+
+            <div v-show="showCompleted">
+                <assignment-list
+                    :assignments="filters.completed"
+                    title="Completed"
+                    can-toggle
+                    @toggle="showCompleted = !showCompleted"
+                ></assignment-list>
+            </div>
 
             <!-- Modo 1: Comunicacion mediante props -->
             <!-- <assignment-create :assignments="assignments"></assignment-create> -->
 
             <!-- Modo 2: Recibir evento del componente hijo @nombre-evento="nombre-método" -->
-            <assignment-create @add="add"></assignment-create>
+            <!-- <assignment-create @add="add"></assignment-create> -->
         </section>
     `,
 
     data() {
         return {
             assignments: [],
+            showCompleted: true,
         };
     },
 

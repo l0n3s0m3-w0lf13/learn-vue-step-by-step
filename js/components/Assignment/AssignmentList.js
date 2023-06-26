@@ -5,11 +5,15 @@ export default {
     components: { Assignment, AssignmentTags },
 
     template: `
-        <section v-show="assignments.length">
-            <h2 class="font-bold mb-2">
-                {{ title }}
-                <span>({{ assignments.length }})</span>
-            </h2>
+        <section v-show="assignments.length" class="w-60">
+            <div class="flex justify-between items-start">
+                <h2 class="font-bold mb-2">
+                    {{ title }}
+                    <span>({{ assignments.length }})</span>
+                </h2>
+
+                <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
+            </div>
 
             <!-- Variable $event contiene el valor recibido del evento emitido -->
             <!-- <assignment-tags
@@ -32,12 +36,16 @@ export default {
                     :assignment="assignment"
                 ></assignment>
             </ul>
+
+            <!-- Acepta un posible parametro desde la llamada al componente -->
+            <slot></slot>
         </section>
     `,
 
     props: {
         assignments: Array,
         title: String,
+        canToggle: { type: Boolean, default: false },
     },
 
     data() {

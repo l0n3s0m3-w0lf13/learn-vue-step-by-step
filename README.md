@@ -16,3 +16,20 @@ Sin dejar de ejecutar `npx serve`, ejecutar el servidor en otro puerto:
 npx json-server db.json -p 3001
 ```
 > Si se hace un cambio en la base de datos hay que resetar el server.
+
+### Crear comando de ejecución de ambos servers
+
+Dentro del archivo `package.json`:
+
+```json
+  "scripts": {
+    "start": "npx serve & npx json-server db.json -p 3001"
+  },
+```
+`&` sirve para dejar en ejecución ambos comandos.
+
+Para usar el script desde la terminal:
+
+```shell
+npm run start
+```

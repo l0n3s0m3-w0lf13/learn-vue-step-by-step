@@ -2,11 +2,12 @@ export default {
     template: `
         <!-- prevenir comportamiento por defecto desde vue: recargar la página con submit -->
         <form @submit.prevent="add">
-            <div class="border border-gray-600 text-black">
+            <div class="border border-gray-600 text-black flex">
                 <input
                     v-model="newAssignment"
                 	class="p-2"
                 	placeholder="New assigment..."
+                    class="w-full"
                 />
                 <button type="submit" class="bg-white p-2 border-l">Add</button>
             </div>
